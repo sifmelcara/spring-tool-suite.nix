@@ -4,6 +4,8 @@
 
 This is just a simple expression that uses prebuilt binary from https://spring.io/tools
 
+Note that the built binary have not been fully tested.
+
 ## Installation
 ```
 nix-env -f sts.nix -i
