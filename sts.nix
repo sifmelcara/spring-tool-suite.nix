@@ -7,7 +7,8 @@ stdenv.mkDerivation rec {
       url = "http://download.springsource.com/release/STS/3.8.2.RELEASE/dist/e4.6/spring-tool-suite-3.8.2.RELEASE-e4.6.1-linux-gtk-x86_64.tar.gz";
       sha256 = "346cdea58a6246cb5ab127220ca0f5e24c436e50ea633c4b72f6faa013555f1a";
     };
-    buildInputs = [ gnome3.gtk xorg.libXtst openjdk makeWrapper ] ;
+    buildInputs = [ gnome3.gtk xorg.libXtst makeWrapper ];
+    propagatedBuildInputs = [ openjdk ] ;
     libPath = stdenv.lib.makeLibraryPath [ gnome3.gtk xorg.libXtst ];
     phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
     installPhase = ''
