@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
       sha256 = "346cdea58a6246cb5ab127220ca0f5e24c436e50ea633c4b72f6faa013555f1a";
     };
     buildInputs = [ gnome2.gtk xorg.libXtst makeWrapper ];
-    propagatedBuildInputs = [ openjdk ] ;
+    propagatedBuildInputs = [ openjdk maven gradle ] ;
     libPath = stdenv.lib.makeLibraryPath [ gnome2.gtk xorg.libXtst ];
     phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
     installPhase = ''
@@ -21,6 +21,8 @@ stdenv.mkDerivation rec {
       patchelf --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) STS
       wrapProgram $out/sts-${version}.RELEASE/STS \
         --prefix LD_LIBRARY_PATH : $libPath \
-        --prefix PATH : ${openjdk}/bin
+        --prefix PATH : ${openjdk}/bin \
+        --prefix PATH : ${maven}/bin \
+        --prefix PATH : ${gradle}/bin
     ''; 
 }
