@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
       sha256 = "346cdea58a6246cb5ab127220ca0f5e24c436e50ea633c4b72f6faa013555f1a";
     };
     buildInputs = [ gtk xorg.libXtst openjdk makeWrapper tree ] ;
-    libPath = stdenv.lib.makeLibraryPath [ pkgs.gnome.gtk pkgs.xorg.libXtst ];
+    libPath = stdenv.lib.makeLibraryPath [ gtk xorg.libXtst ];
     phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
     installPhase = ''
       mkdir -p $out/bin
