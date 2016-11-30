@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
     phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
     installPhase = ''
       mkdir -p $out/bin
-      cp -r sts-${version}.RELEASE $out/
+      cp -r * $out/
       ln -s $out/sts-${version}.RELEASE/STS $out/bin/STS
     '';
     fixupPhase = ''
