@@ -19,6 +19,8 @@ stdenv.mkDerivation rec {
     fixupPhase = ''
       cd $out/sts-${version}.RELEASE
       patchelf --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) STS
-      wrapProgram $out/sts-${version}.RELEASE/STS --prefix LD_LIBRARY_PATH : $libPath
+      wrapProgram $out/sts-${version}.RELEASE/STS \
+        --prefix LD_LIBRARY_PATH : $libPath \
+        --prefix PATH : ${openjdk}/bin
     ''; 
 }
